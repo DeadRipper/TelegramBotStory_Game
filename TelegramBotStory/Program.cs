@@ -11,7 +11,7 @@ namespace TelegramBotStory
 	class Program
 	{
 		//botClient.SendTextMessageAsync(e.Message.Chat.Id, "Good evening " + e.Message.Chat.FirstName);
-		public static TelegramBotClient botClient = new TelegramBotClient("711133679:AAG-kseOsmRtN6SVwxPBhVe-7MsFg6ljQ40");
+		private static readonly TelegramBotClient botClient = new TelegramBotClient("711133679:AAG-kseOsmRtN6SVwxPBhVe-7MsFg6ljQ40");
 		static string HelpButton = "Сделайте свой выбор. Выбор состоит из нажатия выделеной области в конце каждого фрагмента рассказа.";
 		static string BegionOfStory = "И вот снова отпуск. Хотя какой там снова." +
 			"С моей работой я в отпуске был всего дважды, и вот наконец-то." +
@@ -76,38 +76,133 @@ namespace TelegramBotStory
 			"Выберите дальнейшее развитие сюжета:" + Environment.NewLine +
 			"Приступить к опросу (/detective) или Сдаюсь (/surrender)";
 
-		static string DayOne = "День 1:День нехватки улик(Сегодня вы не можете кого-нибудь обвинить)" +
-			"Сегодня первый день. Сегодня день нехватки улик." +
-			"Вы только начали расследование и еще понятия не имеете, кто убийца, а потому в этот день вы не можете никого обвинять." +
-			"Билл сегодня вновь едет в город. Что-то он туда зачастил. И утром, и ночью..." + 
-			"поехать вместе с Биллом (/Bill) " +
-			"Елена неожиданно заболела.Что-то слишком неожиданно, а главное как удачно вовремя." + 
-			"навестить Елену (/Elena) " + 
-			"Эллис отправилась в город прогуляться по магазинам.Неужели даже гибель человека не портит ей желание отдохнуть?" +
-			"поехать вместе с Эллис (/Elise) " + 
-			"Джек сидит в своем кабинете. Я слышал, он опытный врач, и может знает что-то например, о результатах вскрытия" +
-			"навестить Джека (/Jack) " + 
-			"Джон с утра отправился на прогулку в лес. А ведь там вчера погиб Лари. Что это, любопытство, или нечто похуже?" +
-			"проследить за Джоном (/John) " + 
-			"Кларк сегодня ушел на рыбалку.Какая-то слабая реакция на гибель друга." + 
-			"отправиться на рыбалку вместе с Кларком (/Clark) " + 
-			"Я слышал, что Ребекка здесь — как бабушки у моего подъезда.Знает всё, а секрет хранить не умеет.Но она очень симпатичная, может, ее разговорить?" +
-			"пригласить Ребекку на свидание (/Rebecca) " + 
-			"Сьюзан просто продолжает заниматься своей работой. Её, видимо, вообще не взволновали события прошлой ночи, или она это хорошо скрывает?" +
-			"помочь Сьюзан с уборкой и заодно разговорить ее (/Suzan) " + 
-			"Том решил прогуляться в парке. Он не в ужасе? Он в таком же положении, что и я, но не беспокоится об этом?" +
-			"прогуляться с Томом по парку (/Tom) " +
-			"Если у вас закончились возможности опросить людей, или просто, считаете, что с вас достаточно информации, то можете лечь спать и перейти к следующему дню." +
-			"лечь спать (/sleep) " +
-			"Если вы считаете, что ваше расследование зашло в тупик, или просто хотите начать заново, то выберите обвинить себя." +
+		static string DayOne = "День 1:День нехватки улик(Сегодня вы не можете кого-нибудь обвинить)\n " +
+			"Сегодня первый день. Сегодня день нехватки улик.\n " +
+			"Вы только начали расследование и еще понятия не имеете, кто убийца, а потому в этот день вы не можете никого обвинять.\n " +
+			"Билл сегодня вновь едет в город. Что-то он туда зачастил. И утром, и ночью...\n" +
+			"поехать вместе с Биллом (/Bill)\n " +
+			"Елена неожиданно заболела.Что-то слишком неожиданно, а главное как удачно вовремя.\n " +
+			"навестить Елену (/Elena)\n " +
+			"Эллис отправилась в город прогуляться по магазинам.Неужели даже гибель человека не портит ей желание отдохнуть?\n " +
+			"поехать вместе с Эллис (/Elise)\n " +
+			"Джек сидит в своем кабинете. Я слышал, он опытный врач, и может знает что-то например, о результатах вскрытия\n " +
+			"навестить Джека (/Jack)\n " +
+			"Джон с утра отправился на прогулку в лес. А ведь там вчера погиб Лари. Что это, любопытство, или нечто похуже?\n " +
+			"проследить за Джоном (/John)\n " +
+			"Кларк сегодня ушел на рыбалку.Какая-то слабая реакция на гибель друга.\n " +
+			"отправиться на рыбалку вместе с Кларком (/Clark)\n " +
+			/*"Я слышал, что Ребекка здесь — как бабушки у моего подъезда.Знает всё, а секрет хранить не умеет.Но она очень симпатичная, может, ее разговорить?" +
+			"пригласить Ребекку на свидание (/Rebecca) " + */
+			"Сьюзан просто продолжает заниматься своей работой. Её, видимо, вообще не взволновали события прошлой ночи, или она это хорошо скрывает?\n " +
+			"помочь Сьюзан с уборкой и заодно разговорить ее (/Suzan)\n " +
+			"Том решил прогуляться в парке. Он не в ужасе? Он в таком же положении, что и я, но не беспокоится об этом?\n " +
+			"прогуляться с Томом по парку (/Tom)\n " +
+			"Если у вас закончились возможности опросить людей, или просто, считаете, что с вас достаточно информации, то можете лечь спать и перейти к следующему дню.\n " +
+			"лечь спать (/Sleep)\n " +
+			"Если вы считаете, что ваше расследование зашло в тупик, или просто хотите начать заново, то выберите обвинить себя.\n " +
 			"обвинить себя (/surrender)";
+
+		static string BillChoice = "Сегодня я решил проследить за Биллом. " +
+			"Узнать куда он ездит по ночам и заодно, что он думает об остальных.\n\n\n" +
+			"теперь можно начать вопросы (/AskBill) или обвинить себя (/surrender)";
+
+		static string BillQuestions = "Говорят, Лари был тем еще бунтарем (/BillFirst)\n " +
+			"Я, кстати, заметил, что вы редко бываете в гостинице (/BillSecond)\n" +
+			"Я так понял, что теперь гостиницу скоро закроют? (/BillThird)\n " +
+			"А...как это было.., найти Лари? (/BillFourth)\n " +
+			"Мне кажется, что это был не несчастный случай... (/BillFifth)\n " +
+			"закончить опрос Билла (/EndBill)";
+
+		static string BillFitrst = "— Говорят, Лари был тем еще бунтарем, — предположил я. \n" +
+			"— О чем вы? — удивился Билл \n" +
+			"— Лари был отличным парнем, ну, в отличие от своего отца.Да, характер у него был трудный, но он часто помогал мне, снабжая гостиницу продуктами со своего огорода... \n" +
+			"задать другой вопрос (/BillEnotherQuestion)";
+
+		static string BillSecond = "— Я, кстати, заметил, что вы редко бываете в гостинице — заметил я" +
+			"— Да такова моя жизнь, — замялся он — Каждый день в разъездах, а теперь, еще и это..." +
+			"задать другой вопрос (/BillEnotherQuestion)";
+
+		static string BillThird = "— Я так понял, что теперь гостиницу скоро закроют? — предположил я " +
+			"— Если честно, то я надеюсь, — грустно ответил он — Не удивляйтесь, я давно ее пытаюсь ее продать и единственное, что меня останавливает, так это дружба с жильцами." +
+			"Но самое странное в том, что гостиница еще может выстоять. Ну, вы слышали о проклятии ведь?" +
+			"задать другой вопрос (/BillEnotherQuestion)";
+
+		static string BillFourth  = "— А как это было, — осторожно начал я — найти Лари? " +
+			"— Ужасно, — и страх тут же промелькнул в его глазах — у меня до сих пор перед глазами его труп." +
+			"Поначалу...я даже испугался, и хотел сбежать..." +
+			"Но, я ценил помощь Лари...Ладно, не будем об этом, а то мне и так не по себе... \n " +
+			"задать другой вопрос (/BillEnotherQuestion)";
+
+		static string BillFifth = "— Мне кажется, что это был не несчастный случай, — осторожно предположил я" +
+			"— Может и так, — быстро ответил он, но тут же как-то испугался и уже осторожно заговорил:" +
+			" — Но кто мог хотеть его убить? Все к нему очень хорошо относятся..." +
+			"Хотя нет, не все. Вроде Сьюзан не очень с ним ладила." +
+			"Говорят, что раньше у нее были проблемы с отцом Лари, и с тех пор она не переносит всю их семью. " +
+			"Но я не думаю, что этого достаточно для убийства. \n" +
+			"Вы уезжаете? А вас разве не вызывали на допрос? Или вам куда-то съездить важнее? (/BillQustionContinue) или задать другой вопрос (/BillEnotherQuestion)";
+
+		static string BillQustionContinue = "— Вы уезжаете? А вас разве не вызывали на допрос? Или вам куда-то съездить важнее?" +
+			"— С полицией мы уже пообщались.К тому же такая вещь, как кредит в банке, иногда может пугать больше, чем полиция... \n" +
+			"В гостинице праздник так и не удался. Я плохо его помню, но вы, кажется, его не отмечали с нами.(/DidNotSawBill) или задать другой вопрос(/BillEnotherQuestion)";
+
+		static string DidntSawBill = "— В гостинице праздник так и не удался." +
+			"Я плохо его помню, но вы, кажется, его не отмечали с нами." +
+			"— Почти что нет.Да я никогда и не праздновал этот день." +
+			"Эта гостиница не является для меня чем-то родным, а больше обузой." +
+			"К тому же мне нужно было еще в городе закончить кое-какие дела.\n " +
+			"А в город вы ездили сами?(/BillAlone) или задать другой вопрос (/BillEnotherQuestion)";
+		static string BillAlone = "— А в город вы ездили сами? — Да, а что?" + 
+			Environment.NewLine + "задать другой вопрос (/BillEnotherQuestion)";
+
+		static string ElenaChoice = "Елена, сказала, что она плохо себя чувствует, и просила некому ее не беспокоить. " +
+			"Я решил же проведать ее, и узнать болеет ли она на самом деле?" +
+			"теперь можно начать вопросы (/AskElen) или обвинить себя (/surrender)";
+
+		static string ElenQuestions = "А вы тут давно живете? (/ElenFirst)\n" +
+			"Вы хорошо знали Лари? (/ElenSecond)\n" +
+			"Вы плохо выглядите.Чем-то серьезным заболели? (/ElenThird)\n" +
+			"Я слышал вы здесь работаете? И вам ничего не будет за прогул? (/ElenFourth)\n" +
+			"Вы плохо выглядите.Может, мне позвать Джека? (/ElenFifth)\n" +
+			"закончить опрос Елены (/EndElen)";
+
+		static string EliseChoice = "Эллис сегодня отдыхала отдельно от Тома. " +
+			"Ей нужно было успокоиться после страшного происшествия, а потому она поехала по магазинам, ведь ничто ее так не успокаивает, как трата лишних денег. " +
+			"Я сказал, что в городе у меня тоже есть дела, и решил составить компанию Эллис."+
+			"теперь можно начать вопросы (/AskElise) или обвинить себя (/surrender)";
+
+		static string JackChoice = "Джек сидит у себя в кабинете. Я пожаловался ему на придуманную мною головную боль, и заодно решил опросить подозреваемого." +
+			"теперь можно начать вопросы (/AskJack) или обвинить себя (/surrender)";
+
+		static string JohnChoice = "Джон решил сегодня прогуляться по лесу. " +
+			"Я решил пройтись с ним вместе, ведь мне показалось подозрительным то, что Джон решил пройтись там, где вчера погиб его друг." +
+			"теперь можно начать вопросы (/AskJohn) или обвинить себя (/surrender)";
+
+		static string ClarkChoice = "Кларк сегодня с утра, как и всегда, идет на рыбалку. Я ведь приехал сюда как раз ради этого. Это шанс провести отлично время, и проследить за Кларком."+
+			"теперь можно начать вопросы (/AskClark) или обвинить себя (/surrender)";
+
+		static string SuzanChoice = "Сьюзан сегодня наводила порядок после вчерашнего праздника. Я сказал ей, что после случившегося я не нахожу себе места, а потому заодно предложил ей помочь." +
+			"теперь можно начать вопросы (/AskSuzan) или обвинить себя (/surrender)";
+
+		static string TomChoice = "Поскольку Эллис сегодня уезжает в город, Тому становиться скучно, и он решает прогуляться по парку. Мне тоже стало скучно, а также любопытно, что знает том о смерти Лари." +
+			"теперь можно начать вопросы (/AskTom) или обвинить себя (/surrender)";
+
+		static string SleepChoice = "И вот снова вечер. Как ни странно, но даже после смерти Лари здесь началась полная шумиха. Снова стали наливать всем выпивку. " +
+			"Может, за упокой, может, чтобы успокоиться, а, может, и просто чтобы поднять настроение." +
+			" Я напился, и память быстро стала меня подводить." +
+			" А жаль, так бы я вспомнил, как оказался у себя в комнате." +
+			" К тому же, я проснулся опять из-за прихода полиции. " +
+			"Выяснилось, что умер Джон. Он, выпав с балкона, разбился. " +
+			"Тело нашла Елена, выйдя с утра на улицу." +
+			"попытаться вспомнить, что вчера произошло (/BackRemember) или пропустить момент воспоминаний (/SkipRemember) или Сдаюсь (/surrender)";
+
 
 		static void Main(string[] args)
 		{
+			var me = botClient.GetMeAsync().Result;
+			Console.Title = me.Username;
+
 			botClient.OnMessage += HandleMessage;
 			botClient.OnMessageEdited += HandleMessage;
-
-
 
 			botClient.StartReceiving();
 			Console.ReadLine();
@@ -118,7 +213,7 @@ namespace TelegramBotStory
 		{
 			if (e.Message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
 			{
-				if(e.Message.Text == "/start")
+				if (e.Message.Text == "/start")
 					botClient.SendTextMessageAsync(e.Message.Chat.Id, BegionOfStory);
 				else if (e.Message.Text == "/ride")
 					botClient.SendTextMessageAsync(e.Message.Chat.Id, SecondPart);
@@ -133,25 +228,49 @@ namespace TelegramBotStory
 				else if (e.Message.Text == "/detective")
 					botClient.SendTextMessageAsync(e.Message.Chat.Id, DayOne);
 				else if (e.Message.Text == "/Bill")
-					botClient.SendTextMessageAsync(e.Message.Chat.Id, ThirdPart);
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillChoice);
+				else if (e.Message.Text == "/AskBill")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/BillFirst")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/BillFirst")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/BillSecond")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/BillThird")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/BillFourth")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/BillFifth")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/BillQustionContinue")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/DidntSawBill")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/BillAlone")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/BillEnotherQuestion")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
+				else if (e.Message.Text == "/EndBill")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, BillQuestions);
 				else if (e.Message.Text == "/Elena")
-					botClient.SendTextMessageAsync(e.Message.Chat.Id, ThirdPart);
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, ElenaChoice);
 				else if (e.Message.Text == "/Elise")
-					botClient.SendTextMessageAsync(e.Message.Chat.Id, ThirdPart);
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, EliseChoice);
 				else if (e.Message.Text == "/Jack")
-					botClient.SendTextMessageAsync(e.Message.Chat.Id, ThirdPart);
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, JackChoice);
 				else if (e.Message.Text == "/John")
-					botClient.SendTextMessageAsync(e.Message.Chat.Id, ThirdPart);
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, JohnChoice);
 				else if (e.Message.Text == "/Clark")
-					botClient.SendTextMessageAsync(e.Message.Chat.Id, ThirdPart);
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, ClarkChoice);
 				else if (e.Message.Text == "/Rebecca")
 					botClient.SendTextMessageAsync(e.Message.Chat.Id, ThirdPart);
 				else if (e.Message.Text == "/Suzan")
-					botClient.SendTextMessageAsync(e.Message.Chat.Id, ThirdPart);
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, SuzanChoice);
 				else if (e.Message.Text == "/Tom")
-					botClient.SendTextMessageAsync(e.Message.Chat.Id, ThirdPart);
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, TomChoice);
 				else if (e.Message.Text == "/sleep")
-					botClient.SendTextMessageAsync(e.Message.Chat.Id, ThirdPart);
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, SleepChoice);
 				else if (e.Message.Text == "/surrender")
 					botClient.SendTextMessageAsync(e.Message.Chat.Id, "Самое интересное впереди.... До новых встреч, " + e.Message.Chat.FirstName);
 				else
