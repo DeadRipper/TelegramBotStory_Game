@@ -725,6 +725,8 @@ namespace TelegramBotStory
 					botClient.SendTextMessageAsync(e.Message.Chat.Id, SleepChoice);
 				else if (e.Message.Text == "/TryRemember")
 					botClient.SendTextMessageAsync(e.Message.Chat.Id, TryRemember);
+				else if (e.Message.Text == "/DayTwo")
+					botClient.SendTextMessageAsync(e.Message.Chat.Id, DayTwo);
 				else if (e.Message.Text == "/surrender")
 					botClient.SendTextMessageAsync(e.Message.Chat.Id, "Самое интересное впереди.... До новых встреч, " + e.Message.Chat.FirstName);
 				else
