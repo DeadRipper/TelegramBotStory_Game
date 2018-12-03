@@ -1,0 +1,13 @@
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\bin\Debug\TelegramBotStory.exe.config
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\bin\Debug\TelegramBotStory.exe
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\bin\Debug\TelegramBotStory.pdb
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\bin\Debug\Newtonsoft.Json.dll
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\bin\Debug\Telegram.Bot.dll
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\bin\Debug\Newtonsoft.Json.xml
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\bin\Debug\Telegram.Bot.xml
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\obj\Debug\TelegramBotStory.csprojAssemblyReference.cache
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\obj\Debug\TelegramBotStory.csproj.CoreCompileInputs.cache
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\obj\Debug\TelegramBotStory.csproj.CopyComplete
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\obj\Debug\TelegramBotStory.exe
+C:\Users\hardy\source\repos\TelegramBotStory\TelegramBotStory\obj\Debug\TelegramBotStory.pdb
